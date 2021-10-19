@@ -1,15 +1,17 @@
-package br.com.rafanereslima.marvelousheroes.presentation.fragments.listCharacters
+package br.com.rafanereslima.marvelousheroes.presentation.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import br.com.rafanereslima.marvelousheroes.R
+import br.com.rafanereslima.marvelousheroes.models.Data
 import com.bumptech.glide.Glide
-import com.jorgel.marvel.R
-import com.jorgel.marvel.models.Data
+import kotlinx.android.synthetic.main.cell_character.view.*
 
-class ListCharactersAdapter(private val context: Context, private var data: Data, private var listCharactersCallbacks: ListCharactersCallbacks) :
+class ListCharactersAdapter(private val context: Context, private var data: Data) :
         RecyclerView.Adapter<ListCharactersAdapter.ListCharactersHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListCharactersHolder {
@@ -17,7 +19,7 @@ class ListCharactersAdapter(private val context: Context, private var data: Data
     }
 
     override fun onBindViewHolder(holder: ListCharactersHolder, position: Int) {
-        holder.bindItems(context, position, listCharactersCallbacks)
+        holder.bindItems(context, position)
     }
 
     override fun getItemCount(): Int {
@@ -38,7 +40,7 @@ class ListCharactersAdapter(private val context: Context, private var data: Data
     }
 
     inner class ListCharactersHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindItems(context: Context, position: Int, clickListener: ListCharactersCallbacks) {
+        fun bindItems(context: Context, position: Int) {
             if (isPagination() && position == data.results.size) {
                 itemView.cellBodyListsDetail.visibility = View.GONE
                 itemView.loadingCell.visibility = View.VISIBLE
@@ -53,7 +55,7 @@ class ListCharactersAdapter(private val context: Context, private var data: Data
                     .into(itemView.imageViewCharacter)
                 itemView.characterTitle.text = data.results[position].name
                 itemView.setOnClickListener {
-                    clickListener.onCharacterSelectedClick(data.results[position].name, data.results[position].id)
+                    Toast.makeText(context, data.results[position].name, Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import br.com.rafanereslima.marvelousheroes.R
 import com.google.android.material.appbar.AppBarLayout
+import br.com.rafanereslima.marvelousheroes.R
 import br.com.rafanereslima.marvelousheroes.presentation.fragments.listCharacters.ListCharactersFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 enum class TypeFragment {
-    LIST_CHARACTER, DETAIL_CHARACTERS
-}
-
-interface CharacterClickCallbacks {
-    fun onCharacterSelectedClick(title: String, characterSelected: Int)
+    LIST_CHARACTER
 }
 
 class MainActivity : AppCompatActivity() {
@@ -49,30 +46,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(false)
     }
 
-    private fun loadDetailCharacterFragment(title: String, characterSelected: Int? = null) {
-        if (!listTypeFragment.containsKey(TypeFragment.DETAIL_CHARACTERS)) {
-            listTypeFragment[TypeFragment.DETAIL_CHARACTERS] = DetailCharacterFragment.newInstance(characterSelected!!, this)
-        }
-        this.title = title
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, listTypeFragment[TypeFragment.DETAIL_CHARACTERS]!!)
-            .commitNow()
-        configureToolbarTitle(title)
-        mainToolbar.setNavigationOnClickListener {
-            this.title = ""
-            listTypeFragment.remove(TypeFragment.DETAIL_CHARACTERS)
-            loadListCharactersFragment()
-        }
-    }
-
-    private fun loadWebViewFragment(title: String, url: String) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, WebViewFragment.newInstance(url))
-            .commitNow()
-        mainToolbar.setNavigationOnClickListener { loadDetailCharacterFragment(this.title) }
-        configureToolbarTitle(title)
-    }
-
     private fun configureToolbarTitle(title: String) {
         imageToolbar.visibility = View.GONE
         titleToolbar.visibility = View.VISIBLE
@@ -85,15 +58,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
-    override fun onCharacterSelectedClick(title: String, characterSelected: Int) {
-        loadDetailCharacterFragment(title, characterSelected)
-    }
-
-    override fun backList() {
+    fun backList() {
         loadListCharactersFragment()
-    }
-
-    override fun openLink(title: String, url: String) {
-        loadWebViewFragment(title, url)
     }
 }
