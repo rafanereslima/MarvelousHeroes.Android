@@ -5,10 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.rafanereslima.marvelousheroes.models.CharactersModel
 import br.com.rafanereslima.marvelousheroes.models.ErrorModel
-import com.jorgel.marvel.coreServices.ResultResponse
-import com.jorgel.marvel.coreServices.servicesHandler.CharactersServiceHandler
-import com.jorgel.marvel.models.CharactersModel
-import com.jorgel.marvel.models.ErrorModel
+import br.com.rafanereslima.marvelousheroes.network.ResultResponse
+import br.com.rafanereslima.marvelousheroes.network.servicesHandler.CharactersServiceHandler
 
 class ListCharactersViewModel : ViewModel() {
     var characters: CharactersModel? = null

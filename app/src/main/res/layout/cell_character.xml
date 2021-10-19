@@ -9,7 +9,7 @@
         android:id="@+id/cellBodyListsDetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,10 +26,11 @@
                 android:id="@+id/imageViewCharacterContainer"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="10dp"
+                app:cardCornerRadius="5dp"
                 app:rippleColor="@android:color/transparent"
                 app:strokeWidth="0dp"
                 app:cardElevation="0dp">
@@ -41,19 +42,35 @@
                     android:scaleType="centerInside"/>
             </androidx.cardview.widget.CardView>
             <TextView
-                android:id="@+id/characterTitle"
+                android:id="@+id/marvelTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
-                android:textAlignment="center"
-                android:textColor="@color/colorTextRed"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:text="@string/marvel_hero"
                 app:layout_constraintBottom_toBottomOf="@+id/imageViewCharacterContainer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageViewCharacterContainer"
                 app:layout_constraintTop_toTopOf="@+id/imageViewCharacterContainer" />
+            <TextView
+                android:id="@+id/characterTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewCharacterContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageViewCharacterContainer"
+                app:layout_constraintTop_toBottomOf="@+id/marvelTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
     <androidx.constraintlayout.widget.ConstraintLayout
